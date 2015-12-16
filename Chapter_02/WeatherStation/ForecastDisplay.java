@@ -15,7 +15,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 	}
 
 	public void Update(float temp, float humidity, float pressure) {
-                lastPressure = currentPressure;
+        lastPressure = currentPressure;
 		currentPressure = pressure;
 
 		Display();
@@ -23,6 +23,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 
 	public void Display() {
 		System.out.print("Forecast: ");
+		
 		if (currentPressure > lastPressure) {
 			System.out.println("Improving weather on the way!");
 		} else if (currentPressure == lastPressure) {
