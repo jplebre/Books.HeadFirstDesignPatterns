@@ -9,4 +9,7 @@ public class LightOffCommand implements Command{
     light.off();
   }
 
+  public void undo(){
+    light.on();
+  }
 }

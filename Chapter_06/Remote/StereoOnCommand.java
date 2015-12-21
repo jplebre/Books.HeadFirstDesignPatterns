@@ -9,4 +9,7 @@ public class StereoOnCommand implements Command{
     stereo.on();
   }
 
+  public void undo(){
+    stereo.off();
+  }
 }

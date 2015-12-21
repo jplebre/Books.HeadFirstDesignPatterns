@@ -11,4 +11,7 @@ public class StereoOnPlayCDCommand implements Command{
     stereo.setVolume(11);
   }
 
+  public void undo(){
+    stereo.off();
+  }
 }

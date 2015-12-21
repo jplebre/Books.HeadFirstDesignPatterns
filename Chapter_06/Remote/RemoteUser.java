@@ -13,7 +13,8 @@ public class RemoteUser {
         LightOnCommand kitchenLightOn = new LightOnCommand(kitchenLight);
         LightOffCommand kitchenLightOff = new LightOffCommand(kitchenLight);
 
-        CeilingFanOnHighCommand ceilingFanOn = new CeilingFanOnHighCommand(ceilingFan);
+        CeilingFanOnHighCommand ceilingFanHigh = new CeilingFanOnHighCommand(ceilingFan);
+        CeilingFanOnMediumCommand ceilingFanMedium = new CeilingFanOnMediumCommand(ceilingFan);
         CeilingFanOffCommand ceilingFanOff = new CeilingFanOffCommand(ceilingFan);
 
         GarageDoorUpCommand garageDoorUpCommand = new GarageDoorUpCommand(garageDoor);
@@ -24,19 +25,34 @@ public class RemoteUser {
 
         remoteControl.setCommand(0, livingRoomLightOn, livingRoomLightOff);
         remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff);
-        remoteControl.setCommand(2, ceilingFanOn, ceilingFanOff);
+        remoteControl.setCommand(2, ceilingFanHigh, ceilingFanOff);
         remoteControl.setCommand(3, stereoOnPlayCD, stereoOff);
+        remoteControl.setCommand(4, ceilingFanMedium, ceilingFanOff);
 
         System.out.println(remoteControl);
 
         remoteControl.buttonPushedOn(0);
+        System.out.println(remoteControl);
+        remoteControl.undoButtonPushed();
+        
+        System.out.println("\n");
         remoteControl.buttonPushedOff(0);
+        System.out.println(remoteControl);
+        remoteControl.undoButtonPushed();
+
+        System.out.println("Undo should be no command:");
+        System.out.println(remoteControl);
+
         remoteControl.buttonPushedOn(1);
         remoteControl.buttonPushedOff(1);
-        remoteControl.buttonPushedOn(2);
-        remoteControl.buttonPushedOff(2);
         remoteControl.buttonPushedOn(3);
         remoteControl.buttonPushedOff(3);
+
+
+        System.out.println("Testing the Celing Fan Undo:");
+        remoteControl.buttonPushedOn(4);
+        remoteControl.buttonPushedOn(2);
+        remoteControl.undoButtonPushed();
 
 
     }
