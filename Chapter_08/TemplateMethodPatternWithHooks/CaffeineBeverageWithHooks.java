@@ -1,4 +1,4 @@
-public abstract class CaffeineBeverage {
+public abstract class CaffeineBeverageWithHooks {
 
 	// Base class has the algorithm.
 	// Algorithm is unchanged and cannot be modified
@@ -6,7 +6,10 @@ public abstract class CaffeineBeverage {
 		boilWater();
 		brew();                   // Not implemented yet
 		pourInCup();
-		addCondiments();          // Not implemented yet
+
+		if (clientWantsCondiments()) {
+			addCondiments();          // Not implemented yet
+		}
 	}
 
 
@@ -20,5 +23,9 @@ public abstract class CaffeineBeverage {
 
 	public void pourInCup() {
 		System.out.println("Pouring into Cup");
+	}
+
+	public boolean clientWantsCondiments(){
+		return true;
 	}
 }
