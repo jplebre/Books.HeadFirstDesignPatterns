@@ -1,20 +1,17 @@
 import java.util.*;
 
-public class CompositeIterator implements Iterator {
-	Stack stack = new Stack();
+public class CompositeIterator implements Iterator<MenuComponent> {
+	Stack<Iterator<MenuComponent>> stack = new Stack<Iterator<MenuComponent>>();
 
-	public CompositeIterator(Iterator iterator) {
+	public CompositeIterator(Iterator<MenuComponent> iterator) {
 		stack.push(iterator);
 	}
 
-	public Object next () {
+	public MenuComponent next () {
 		if (hasNext()) {
-			Iterator iterator = (Iterator) stack.peek();
-			MenuComponent component = (MenuComponent) iterator.next();
-
-			if (component instanceof Menu) {
-				stack.push (component.createIterator());
-			}
+			Iterator<MenuComponent> iterator = stack.peek();
+			MenuComponent component = iterator.next();
+			stack.push (component.createIterator());
 
 			return component;
 		} else {
@@ -26,7 +23,7 @@ public class CompositeIterator implements Iterator {
 		if (stack.empty()) {
 			return false;
 		} else {
-			Iterator iterator = (Iterator) stack.peek();
+			Iterator<MenuComponent> iterator = stack.peek();
 			
 			if (!iterator.hasNext()) {
 				stack.pop();
